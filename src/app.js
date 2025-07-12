@@ -16,7 +16,7 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: 'https://doubt-tracker-app.vercel.app/',
+    origin: '*',
     methods: ['GET', 'POST']
   }
 });
@@ -63,10 +63,10 @@ app.use(rateLimiter);
 connectDB();
 
 // Placeholder for routes
-app.use('/auth', require('./routes/authRoutes'));
-app.use('/doubts', require('./routes/doubtRoutes'));
-app.use('/comments', require('./routes/commentRoutes'));
-app.use('/chat', require('./routes/chatRoutes'));
+app.use('/api/auth', require('./routes/authRoutes'));
+app.use('/api/doubts', require('./routes/doubtRoutes'));
+app.use('/api/comments', require('./routes/commentRoutes'));
+app.use('/api/chat', require('./routes/chatRoutes'));
 
 app.get('/', (req, res) => {
   res.send('DevHelp Doubt Tracker API');
