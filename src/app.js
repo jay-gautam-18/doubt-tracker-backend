@@ -3,6 +3,7 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const connectDB = require('./config/db');
 const rateLimiter = require('./middlewares/rateLimiter');
+const morgan = require('morgan');
 const http = require('http');
 const { Server } = require('socket.io');
 const chatService = require('./services/chatService');
@@ -55,6 +56,7 @@ io.on('connection', (socket) => {
 });
 
 // Middleware
+app.use(morgan('dev'));
 app.use(cors());
 app.use(express.json());
 app.use(rateLimiter);
